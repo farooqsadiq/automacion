@@ -1,0 +1,23 @@
+---
+- name: create sudoers.d directory
+  file:
+    path: /etc/sudoers.d
+    state: directory
+  become: true
+
+- name: configure sudo to use sudoers.d directory for safer and more upgradable configuration
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: "^#includedir /etc/sudoers.d"
+    line: "#includedir /etc/sudoers.d"
+    state: present
+    validate: 'visudo -cf %s'
+  become: true
+
+- name: validate and deploy sudoers template
+  template:
+    src: vagrant-sudoers.j2
+    dest: /etc/sudoers.d/vagrant-sudoers
+    mode: 0440
+    validate: 'visudo -cf %s'
+  become: true

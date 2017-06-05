@@ -1,0 +1,97 @@
+#!/bin/bash/
+export PS1="[\D{%F} \@] \u@\h \w \$ " # prompt
+#export CC=/usr/bin/gcc-4.2
+#export gcc=/usr/bin/gcc-4.2
+
+. ~/.profile
+
+# export PLAY_HOME=~/Applications/play-1.2.5
+export PLAY_HOME=/opt/play-1.3.0
+export PATH=$PLAY_HOME:$PATH
+export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
+export PATH=$HOME/Library/Haskell/bin:$PATH
+#export PATH="$HOME/Library/Haskell/ghc-7.4.2/lib/CCA-0.1.3/bin/:$PATH"
+export PATH=~/Source/scriptcetera:$PATH
+#export PATH="~/.cabal/bin:$PATH"
+#export PATH="/usr/bin/gcc-4.2:$PATH"
+export M2_HOME=/usr/share/maven
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+export ANT_HOME=/usr/share/ant
+export ANT=$ANT_HOME/bin
+export PATH=$ANT:$PATH
+export PATH=/usr/local/bin:$PATH
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_11.jdk/Contents/Home/
+export PATH=/Applications/git-annex.app/Contents/MacOS:$PATH
+export PATH=/Applications/mongodb.app/bin:$PATH
+export PATH=/usr/bin/xmllint:$PATH
+export PATH=~/bin:$PATH
+
+export GOPATH=~/Source/Go
+
+# OpenSSL
+export PATH=/usr/local/openssl/bin:$PATH
+export MANPATH=/usr/local/openssl/ssl/man:$MANPATH
+
+# IPFS
+export IPFSPATH=/use/local/bin/ipfs
+export PATH=$IPFSPATH:$PATH
+
+# differentiate between dev, test & stage
+export ENVIRONMENT=dev
+
+# ansible
+#export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
+
+# scripts:
+# ~~~~~
+# tomcat
+tomcatstartup() {
+	/Library/Tomcat/bin/startup.sh
+}
+tomcatshutdown() {
+	/Library/Tomcat/bin/shutdown.sh
+}
+# vireo
+vireostart() {
+	play start ~/Source/Vireo --%dev
+}
+vireostop() {
+        play stop ~/Source/Vireo --%dev
+}
+
+# utils
+cdl() {
+	cd $1;
+	ls -a;
+}
+
+# chruby
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+# set default:
+chruby ruby-2.3
+
+# rbenv setup:
+#if which rbenv > /dev/null;
+#	then eval "$(rbenv init -)";
+#fi
+
+# using homebrew instead 
+# ImageMagick
+#export MAGICK_HOME="/usr/local/ImageMagick"
+#export PATH="$MAGICK_HOME/bin:$PATH"
+#export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
+
+# FITS
+export FITS_HOME="/usr/local/fits"
+export PATH="$FITS_HOME:$PATH"
+
+# LibreOffice
+export LIBREOFFICE_HOME="/Applications/LibreOffice.app/Contents/MacOS"
+export PATH="$LIBREOFFICE_HOME:$PATH"
+
+export SSL_CERT_FILE="/etc/ssl/certs/ca-bundle.crt"
+
+source ~/.git-completion.bash
+source ~/dataverse_api.sh

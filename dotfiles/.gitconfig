@@ -1,0 +1,32 @@
+[user]
+	name = dheles
+	email = drew@codhicitta.com
+	signingkey = 5D48894F
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/dheles/.gitignore_global
+	autocrlf = input
+	editor = vim
+[color]
+	ui = true
+[merge]
+	tool = opendiff
+[diff]
+	tool = opendiff
+	external = /Users/dheles/Source/scriptcetera/git-diff.sh
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[push]
+	default = simple
+[alias]
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+[commit]
+	gpgsign = true
+	template = /Users/dheles/.gitmessage.txt

@@ -1,0 +1,6 @@
+Subject line (imperitive, pref <= 50 char; max 72 char)
+
+Body paragraphs (after empty line)
+ - bullets ok
+
+Resolves #1

@@ -1,0 +1,15 @@
+---
+# '^\\.?(.*?)(?:\\.j2)?$' - regex with the following meaning:
+# ^           - beginning of the filename
+# \\.?        - optional period
+# (.*?)       - the filename we want to capture, with the '?' modifier making the match non-greedy, to let the extension match properly...
+# (?:\\.j2)?  - match the optional '.j2' extension, as a non-capturing (discarded) group
+# $           - end of the filename
+- name: template any files that are in the dotfiles directory of the containing project
+  template:
+    src: "{{ item }}"
+    dest: "{{ansible_env.HOME}}/{{ item | basename | regex_replace('^\\.?(.*?)(?:\\.j2)?$', '.\\1') }}"
+    backup: true
+  with_fileglob:
+    - "dotfiles/*"
+    - "dotfiles/.*"

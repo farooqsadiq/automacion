@@ -4,3 +4,4 @@
 
     roles:
       - { role: sudoers }
+      - { role: dotfiles }

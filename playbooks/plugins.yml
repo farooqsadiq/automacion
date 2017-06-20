@@ -1,0 +1,16 @@
+---
+  - hosts: all
+    connection: local
+
+    tasks:
+      - name: list installed vagrant plugins
+        command: vagrant plugin list
+        register: vagrant_plugin_list
+        changed_when: false
+
+      # NOTE: vagrant itself gets installed by the homebrew role
+      # by virtue of its inclusion in the homebrew_cask_apps variable
+      - name: install vagrant plugins
+        command: "vagrant plugin install {{ item }}"
+        when: "'vagrant' in homebrew_cask_apps and '{{ item }}' not in vagrant_plugin_list.stdout"
+        with_items: "{{ vagrant_plugins }}"

@@ -1,0 +1,17 @@
+---
+  - hosts: all
+    connection: local
+
+    roles:
+      - { role: geerlingguy.mas }
+
+    tasks:
+
+      # NOTE: this isn't really necessary - just a convenience
+      # for finding additional apps to add in the future
+      - name: find mas apps
+        command: "mas search {{ item }}"
+        changed_when: false
+        with_items:
+          - "OTP"
+          - "quiver"

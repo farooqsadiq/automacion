@@ -1,34 +1,5 @@
 ---
-  - hosts: all
-    connection: local
-
-    tasks:
-      # TODO: refactor or remove (homebrew role seems to have an opinion on this)
-      # - name: fix ownership of /usr/local dirs
-      #   file:
-      #     path: "/usr/local"
-      #     owner: "{{ ansible_user_id }}"
-      #     group: "{{ ansible_user_gid }}"
-      #     recurse: true
-      #   become: true
-
-    roles:
-      - { role: sudoers }
-      - { role: dotfiles }
-      - { role: geerlingguy.homebrew }
-      - { role: geerlingguy.mas }
-
-    tasks:
-
-      # NOTE: this isn't really necessary - just a convenience
-      # for finding additional apps to add in the future
-      - name: find mas apps
-        command: "mas search {{ item }}"
-        changed_when: false
-        with_items:
-          - "OTP"
-          - "quiver"
-
-    post_tasks:
-      - name: turn homebrew analytics off
-        command: "brew analytics off"
+- include: playbooks/sudoers.yml
+- include: playbooks/dotfiles.yml
+- include: playbooks/homebrew.yml
+- include: playbooks/mas.yml

@@ -1,0 +1,21 @@
+---
+  - hosts: all
+    connection: local
+
+    # tasks:
+      # TODO: refactor or remove (homebrew role seems to have an opinion on this)
+      # - name: fix ownership of /usr/local dirs
+      #   file:
+      #     path: "/usr/local"
+      #     owner: "{{ ansible_user_id }}"
+      #     group: "{{ ansible_user_gid }}"
+      #     recurse: true
+      #   become: true
+
+    roles:
+      - { role: geerlingguy.homebrew }
+
+    post_tasks:
+      # TODO: figure out if this can be a handler
+      - name: turn homebrew analytics off
+        command: "brew analytics off"

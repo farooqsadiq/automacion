@@ -2,7 +2,7 @@
 
 # setup vars
 project:        "automacion"
-version:        "1.3.0"
+version:        "1.4.0"
 
 # homebrew vars
 homebrew_installed_packages: []

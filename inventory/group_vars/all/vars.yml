@@ -2,10 +2,17 @@
 
 # setup vars
 project:        "automacion"
-version:        "1.4.0"
+version:        "1.5.0"
 
 # homebrew vars
 homebrew_installed_packages: []
 homebrew_cask_apps:
   - keepassxc
   - atom
+
+# mas vars
+mas_email: "{{ vault_mas_email }}"
+mas_password: "{{ vault_mas_password }}"
+mas_installed_apps:
+  - { id: 866773894, name: "Quiver" }
+  - { id: 928941247, name: "OTP Manager" }

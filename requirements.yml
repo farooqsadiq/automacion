@@ -9,3 +9,4 @@
 #   name: secure-ssh
 
 - name: geerlingguy.homebrew
+- name: geerlingguy.mas

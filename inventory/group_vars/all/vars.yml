@@ -9,6 +9,8 @@ homebrew_installed_packages: []
 homebrew_cask_apps:
   - keepassxc
   - atom
+  - virtualbox
+  - vagrant
 
 # mas vars
 mas_email: "{{ vault_mas_email }}"

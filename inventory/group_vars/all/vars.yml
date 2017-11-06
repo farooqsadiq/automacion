@@ -13,6 +13,7 @@ homebrew_cask_apps:
   - virtualbox
   - postgres
   - pgadmin4
+  - keybase
   - vagrant
 
 vagrant_plugins:

@@ -5,6 +5,7 @@
     state: directory
   become: true
 
+# FIXME: this might not be idempotent in a way that might break shit
 - name: configure sudo to use sudoers.d directory for safer and more upgradable configuration
   lineinfile:
     dest: /etc/sudoers

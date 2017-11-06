@@ -1,5 +1,5 @@
 ---
-- include: playbooks/sudoers.yml
+# - include: playbooks/sudoers.yml
 - include: playbooks/dotfiles.yml
 - include: playbooks/homebrew.yml
 - include: playbooks/mas.yml

@@ -19,3 +19,4 @@
       # TODO: figure out if this can be a handler
       - name: turn homebrew analytics off
         command: "brew analytics off"
+        when: homebrewbrew_analytics_off

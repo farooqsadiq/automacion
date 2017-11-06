@@ -15,6 +15,9 @@ homebrew_cask_apps:
   - pgadmin4
   - keybase
   - vagrant
+  # TODO: figure out a way of installing a particular version of vagrant (like 1.9.0) with
+  #  https://raw.githubusercontent.com/caskroom/homebrew-cask/00fe14389b62c9e561e530d082cda2942073484a/Casks/vagrant.rb
+  # as per: https://www.jverdeyen.be/mac/downgrade-brew-cask-application/
 
 vagrant_plugins:
   - vagrant-hostsupdater

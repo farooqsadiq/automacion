@@ -5,8 +5,10 @@ project:        "automacion"
 version:        "1.5.0"
 
 # homebrew vars
-homebrew_installed_packages: []
 homebrewbrew_analytics_off: true
+homebrew_installed_packages:
+  - chruby
+  - ruby-install
 homebrew_cask_apps:
   - keepassxc
   - atom
@@ -28,3 +30,9 @@ mas_password: "{{ vault_mas_password }}"
 mas_installed_apps:
   - { id: 866773894, name: "Quiver" }
   - { id: 928941247, name: "OTP Manager" }
+
+# ruby vars
+rubies:
+  - name: ruby
+    version: 2.4
+    default: true

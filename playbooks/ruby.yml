@@ -1,0 +1,74 @@
+---
+  # TODO: test more rigorously
+  # NOTE: assumes chruby and ruby-install have already been installed,
+  # either via the homebrew playbook, or by other means
+  - hosts: all
+    connection: local
+
+    tasks:
+    # TODO: construct a filter to avoid reinstalling installed rubies because slow
+    - name: install ruby(ies)
+      command: "ruby-install {{ item.name }} {{ item.version | default('') }}"
+      with_items: "{{ rubies }}"
+
+    # TODO: handle no specified version
+    - name: get default ruby version
+      set_fact:
+        default_ruby_version: "{{ item.name }}-{{ item.version }}"
+        ruby_version_number: "{{ item.version }}"
+        when: item.default
+      with_items: "{{ rubies }}"
+
+    - name: check default ruby version
+      debug:
+        msg: "default_ruby_version: {{ default_ruby_version }}"
+        verbosity: 1
+
+    - name: create or update ruby version file
+      lineinfile:
+        dest:   "~/.ruby-version"
+        regexp: "^(.*)$"
+        line:   "{{ default_ruby_version }}"
+        state:  present
+        create: yes
+
+    - name: use chruby
+      blockinfile:
+        dest: "~/.bashrc"
+        marker: "# {mark} chruby"
+        block: |
+          source /usr/local/share/chruby/chruby.sh
+          source /usr/local/share/chruby/auto.sh
+
+    - name: get installed rubies
+      shell: "bash -lc 'chruby'"
+      register: installed_rubies_result
+      changed_when: false
+
+    - name: test installed rubies
+      fail:
+        msg: "attempted to install ruby version {{ default_ruby_version }}, but something went wrong {{ installed_rubies_result.stderr }}"
+      when: default_ruby_version not in installed_rubies_result.stdout
+
+    - name: get final ruby version
+      shell: "ruby --version"
+      register: ruby_version_result
+      changed_when: false
+
+    - debug:
+        msg: "ruby_version_result.stdout: {{ ruby_version_result.stdout }}"
+        verbosity: 1
+
+    - debug:
+        msg: "ruby_version_result.stderr: {{ ruby_version_result.stderr }}"
+        verbosity: 1
+
+    # NOTE: regex_search() returns an array of matches, so we will need to use the 'first' filter to make use of the first (and only) value
+    - set_fact: returned_ruby_version={{ ruby_version_result.stdout | regex_replace('^$','0.0.0') | regex_search('(?P<test>\d+\.\d+\.\d+)', '\\g<test>' ) | first }}
+
+    # TODO: handle no specified version, specified major/minor/no patch, & major/minor/patch
+    # "when: ruby_version_number not in returned_ruby_version" may actually serve better
+    - name: test ruby version
+      fail:
+        msg: "attempted to install ruby version {{ ruby_version_number }}, but something went wrong {{ ruby_version_result.stderr }}"
+      when: "not returned_ruby_version | version_compare(ruby_version_number, '>=')"

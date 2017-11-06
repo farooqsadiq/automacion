@@ -14,3 +14,19 @@
         command: "vagrant plugin install {{ item }}"
         when: "'vagrant' in homebrew_cask_apps and '{{ item }}' not in vagrant_plugin_list.stdout"
         with_items: "{{ vagrant_plugins }}"
+
+      - name: create paths.d directory
+        file:
+          path: /etc/paths.d
+          state: directory
+        become: true
+
+      - name: add lines to PATH
+        lineinfile:
+          dest: "/etc/paths.d/{{ item.file }}"
+          regexp: "{{ item.regexp }}"
+          line: "{{ item.path }}"
+          create: true
+        become: true
+        with_items:
+          - { file: 'postgresapp', regexp: '^/Applications/Postgres', path: '/Applications/Postgres.app/Contents/Versions/latest/bin' }

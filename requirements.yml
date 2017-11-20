@@ -10,3 +10,5 @@
 
 - name: geerlingguy.homebrew
 - name: geerlingguy.mas
+- src: https://github.com/dheles/dev-python-ansible-role
+  name: dev-python

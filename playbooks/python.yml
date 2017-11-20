@@ -1,0 +1,6 @@
+---
+- hosts: all
+  connection: local
+
+  roles:
+  - { role: dev-python } #, dev_python_versions: [2,3] }

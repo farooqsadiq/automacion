@@ -1,3 +1,3 @@
 # my test page
 
-[go home](readme.md)
+[go home](README.md)

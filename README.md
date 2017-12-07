@@ -8,3 +8,6 @@ configures sudoers for greater Vagrantfaction
 ## TODO: install
 vagrant hostsupdater plugin
 https://github.com/cogitatio/vagrant-hostsupdater
+
+## test
+[test page](test.md)

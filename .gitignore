@@ -11,3 +11,5 @@
 #!roles/local.*
 # ignore everyone else's roles (which are typically named username.role)
 roles/*.*
+
+homebrew

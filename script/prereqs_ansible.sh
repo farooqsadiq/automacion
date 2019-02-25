@@ -38,6 +38,12 @@ else
 fi
 
 echo "--> installing pip"
+# TODO update recommended way of installing pip
+# curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+# python get-pip.py
+# Upgrade
+# pip install -U pip
+
 sudo easy_install pip
 
 echo "--> installing ansible"

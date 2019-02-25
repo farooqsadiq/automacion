@@ -1,0 +1,44 @@
+---
+- name: include os-specific vars
+  include_vars: "{{ansible_os_family}}.yml"
+
+- name: install os-specific packages
+  include: "{{ansible_os_family}}.yml"
+
+- name: update pip2
+  pip:
+    name: pip
+    executable: pip2
+    extra_args: --upgrade
+  when: 2 in dev_python_versions
+
+- name: install pip2 packages
+  pip:
+    name: "{{ item }}"
+    executable: pip2
+  with_items: "{{ pip_packages }}"
+  when: 2 in dev_python_versions
+
+- name: update pip3
+  pip:
+    name: pip
+    executable: pip3
+    extra_args: --upgrade
+  when: 3 in dev_python_versions
+
+- name: install pip3 packages
+  pip:
+    name: "{{ item }}"
+    executable: pip3
+  with_items: "{{ pip_packages }}"
+  when: 3 in dev_python_versions
+
+- name: install atom packages
+  command: "apm install {{ item }}"
+  with_items: "{{ atom_packages }}"
+
+# NOTE: fix for hydrogen and homebrew-installed python3
+# https://github.com/nteract/hydrogen/issues/730
+- name: update ipykernel for python3
+  command: "python3 -m ipykernel install --user"
+  when: 3 in dev_python_versions

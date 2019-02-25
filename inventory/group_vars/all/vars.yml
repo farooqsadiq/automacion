@@ -9,27 +9,54 @@ homebrewbrew_analytics_off: true
 homebrew_installed_packages:
   - chruby
   - ruby-install
-homebrew_cask_apps:
-  - keepassxc
-  - atom
-  - virtualbox
-  - postgres
-  - pgadmin4
-  - keybase
-  - vagrant
-  # TODO: figure out a way of installing a particular version of vagrant (like 1.9.0) with
-  #  https://raw.githubusercontent.com/caskroom/homebrew-cask/00fe14389b62c9e561e530d082cda2942073484a/Casks/vagrant.rb
-  # as per: https://www.jverdeyen.be/mac/downgrade-brew-cask-application/
+  - vim
+  - bash
+  - bash-completions
+  - openssl
+  - wget
+  - zsh
+  - zsh-completions
+  - yarn
+  - tree
+  - mas
+  - maven
+  - links
+  - freetds
+  - coreutils
+  - pyenv
+  - jenv
 
+homebrew_cask_apps:
+  - atom
+  - carbon-copy-clone
+  - chromedriver
+  - firefox
+  - google-chrome
+  - iterm2
+  - virtualbox
+  - vagrant
+  - slack
+  - xquartz
+  - spotify
+  - spectacle
+  - rubymine
+  - datagrip 
+  - onedrive
+  - java
+  - mysqlworkbench
+  - karabiner-elements
+  - font-hack-nerd-font
+  - pgadmin4
+  - google-cloud-sdk
 vagrant_plugins:
   - vagrant-hostsupdater
 
 # mas vars
-mas_email: "{{ vault_mas_email }}"
-mas_password: "{{ vault_mas_password }}"
-mas_installed_apps:
-  - { id: 866773894, name: "Quiver" }
-  - { id: 928941247, name: "OTP Manager" }
+#mas_email: "{{ vault_mas_email }}"
+#mas_password: "{{ vault_mas_password }}"
+#mas_installed_apps:
+#  - { id: 866773894, name: "Quiver" }
+#  - { id: 928941247, name: "OTP Manager" }
 
 # ruby vars
 rubies:

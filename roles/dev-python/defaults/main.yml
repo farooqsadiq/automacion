@@ -1,0 +1,11 @@
+---
+dev_python_versions:
+  - 3
+pip_packages:
+  - virtualenv
+  - python-language-server
+  - jupyter
+atom_packages:
+  - atom-ide-ui
+  - ide-python
+  - hydrogen

@@ -1,0 +1,5 @@
+---
+# NOTE: will set dynamically, according to value of dev_python_versions
+homebrew_installed_packages: []
+homebrew_cask_apps:
+  - atom

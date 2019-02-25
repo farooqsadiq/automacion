@@ -1,0 +1,17 @@
+---
+- name: set python package(s)
+  set_fact:
+    homebrew_installed_packages: "{{ homebrew_installed_packages + ['python3'] }}"
+  when: 3 in dev_python_versions
+- set_fact:
+    homebrew_installed_packages: "{{ homebrew_installed_packages + ['python'] }}"
+  when: 2 in dev_python_versions
+
+- name: check python versions
+  debug:
+    var: homebrew_installed_packages
+    verbosity: 2
+
+- name: install homebrew packages
+  include_role:
+    name: geerlingguy.homebrew
